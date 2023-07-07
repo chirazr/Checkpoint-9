@@ -1,0 +1,405 @@
+
+JS-Problem-Solving
+A repository that contains my solutions for various algorithmic problems in JavaScript 
+
+
+**Vowel Count
+
+function getCount(str) {
+  return (str.match(/[aeiou]/ig)||[]).length;
+}
+
+///
+function getCount(str) {
+  var vowelsCount = 0;
+  str.split("").forEach(function(x){
+    if(x == "a" | x == "e" | x == "i" | x == "o" | x == "u"){
+      vowelsCount += 1;
+    }
+  });  
+  return vowelsCount;
+}
+
+
+**Even or Odd
+
+
+function even_or_odd(number) 
+{
+  return number % 2 ? "Odd" : "Even"
+}
+
+***Get the Middle Character
+
+
+function getMiddle(s)
+{
+  Size = s.length;
+  return Size % 2 == 0 ? s[ (Size / 2) - 1] + s[Size / 2] : s[ (Size - 1) / 2];
+}
+
+
+
+
+
+
+
+**Who likes it?
+
+
+function likes(names) {
+  if (names.length == 0) {
+    return "no one likes this";
+  } else if (names.length == 1) {
+    return names[0] + " likes this";  
+  } else if (names.length == 2) {
+    return names[0] + " and " + names[1] + " like this";
+  } else if (names.length == 3) {
+    return names[0] + ", " + names[1] + " and " + names[2] + " like this";
+  } else {
+    return names[0] + ", " + names[1] + " and " + (names.length - 2) + " others like this";
+  }
+}
+
+
+
+
+
+
+** All Star Code Challenge #18
+
+
+function strCount(str, letter){  
+  return str.split(letter).length-1
+
+}
+
+***Previous multiple of three
+const prevMultOfThree = n => {
+  let arr = n.toString().split('')
+
+  for(let i = 0; i<arr.length; i++){
+    for(let j = 0; j<arr.length; i++){
+      let sum = +arr.join('')
+      if( sum % 3 === 0) return sum 
+      arr.pop()
+    }
+
+    return null
+  }
+
+}
+
+
+**Round up to the next multiple of 5
+function roundToNext5(n){
+ return Math.ceil(n/5)*5
+}
+
+
+**Sum of a sequence
+
+const sequenceSum = (begin, end, step) => {
+  var count = 0;
+  for (let i = begin; i <= end; i += step) {
+    count += i;
+  }
+  return count;
+}
+
+**Find the missing letter
+function numberRange (start, end) {
+  return new Array(end - start).fill().map((d, i) => i + start);
+}
+
+function getLetterPosition(letter) {
+  return letter.charCodeAt(0);
+}
+
+function getMissingNumber(array) {
+  const arraySort = array.sort((a, b) => a - b);
+
+  let numberMissing;
+
+  const range = numberRange(arraySort[0], arraySort[arraySort.length - 1])
+
+  for (let i = 0; i < range.length; i++) {
+    const num = range[i]
+    if (arraySort.indexOf(num) < 0) {
+      numberMissing = num;
+      break;
+    }
+  }
+
+  return numberMissing;
+}
+
+function findMissingLetter(array) {
+  const letterPosition = array.map(el => getLetterPosition(el));
+
+  const numberMissing = getMissingNumber(letterPosition)
+
+  return String.fromCharCode(numberMissing)
+}
+
+
+**Odd or Even?
+function oddOrEven(array) {
+  return array.reduce((start, next) => start + next, 0) % 2 == 0
+    ? `${"even"}`
+    : `${"odd"}`;
+}
+
+
+**Plural
+function plural(n) {
+  if (n == 1) return false;
+  return true;
+}
+      
+
+
+** Sum of numbers from 0 to N
+
+var SequenceSum = (function() {
+  function SequenceSum() {}
+
+  SequenceSum.showSequence = function(count) {
+    let sum = 0;
+    let input = '';
+    if (count === 0) return '0=0'
+    if (count < 0) return `${count}<0`
+    for(let i = 0; i <= count; i++){
+      if(i == count){
+        input += String(i);
+      }else {
+      input += String(i) + '+';
+      }
+      sum = sum + i;
+    }
+    return input + ' = ' + sum;
+  };
+  return SequenceSum;
+
+})();
+
+
+**All Star Code Challenge #15
+function rotate(str){
+  const arr = []
+  for (let i=0;i<str.length;i++){
+    arr.push(str.slice(i+1)+str.slice(0,i+1))
+  }
+  return arr
+}
+
+
+
+**Hello World - Without Strings
+
+const helloWorld = () => {
+  return String.fromCharCode(72, 101, 108, 108, 111, 44, 32, 87, 111, 114, 108, 100, 33)
+};
+
+
+**Leap Years
+
+function isLeapYear(year) {
+  return (year % 100 !== 0 && year % 4 === 0) || year % 400 === 0;
+}
+
+
+
+**two sum
+function twoSum(numbers, target) {
+  for(let i = 0; i<numbers.length; i++){
+    for(let j = i+1; j<numbers.length; j++){
+      let res = numbers[i] + numbers[j]
+      if(res == target) return [i,j]
+    }
+  }
+}
+
+
+**Detect Pangram
+
+function isPangram(string) {
+  let str = string
+    .split(" ")
+    .join("")
+    .replace(/[\W\d]/g, "")
+    .toLowerCase()
+    .split("");
+  return [...new Set(str)].length == 26;
+}
+
+
+**Duplicate Encoder
+
+function duplicateEncode(word) {
+  return word
+    .toLowerCase()
+    .split("")
+    .map(function(v, i, arr) {
+      return arr.indexOf(v) == arr.lastIndexOf(v) ? "(" : ")";
+    })
+    .join("");
+}
+
+
+
+
+**Product of consecutive Fib numbers
+function productFib(prod) {
+  let fib = [0, 1];
+  for (let i = 0; fib[i + 1] < prod; i++) fib.push(fib[i] + fib[i + 1]);
+  for (let j = 0; j < fib.length; j++) {
+    if (fib[j] * fib[j + 1] === prod) return [fib[j], fib[j + 1], true];
+    if (fib[j] * fib[j + 1] !== prod && fib[j] * fib[j + 1] > prod)
+      return [fib[j], fib[j + 1], false];
+  }
+}
+
+
+** RGB To Hex Conversion
+function rgb(r, g, b) {
+  //RGB Code validation/ conversion
+  const rgbToHex = function(arg) {
+    let x = arg;
+    //validate rgb values
+    if (x < 0) {
+      x = 0;
+    }else if(x > 255) {
+      x = 255;
+    }
+    //turn each rgb value into a hex value
+    let hex = Number(x).toString(16);
+    //ensure there are 2 digits in each hex value
+    if (hex.length < 2) {
+      hex = "0" + hex;
+    }
+    //return hexcode
+    console.log(hex);
+    return hex;
+  };
+  
+  let red = rgbToHex(r);
+  let green = rgbToHex(g);
+  let blue = rgbToHex(b);
+
+  let hexColor = red + green + blue;
+  console.log(hexColor.toUpperCase())
+  return hexColor.toUpperCase();
+};
+
+
+**Extract the domain name from a URL
+
+function domainName(url) {
+  url = url.replace("https://", "");
+  url = url.replace("http://", "");
+  url = url.replace("www.", "");
+  return url.split(".")[0];
+}
+
+
+** Strip Comments
+function solution(input, markers) {
+  input = input.split`\n`;
+  for (let i = 0; i < markers.length; i++) {
+    let reg = new RegExp(`\\${markers[i]}.+`, "g");
+    input = input.map(v => v.replace(reg, "").trim());
+  }
+  return input.join`\n`;
+}
+
+
+**Most frequently used words in a text
+function topThreeWords(text) {
+  const arr = []
+  text = text.toLowerCase().split` `.map(v=>{
+    if (v===`'`) return ''
+    return v.replace(/[^'a-z]/gi,'')
+  }).filter(v=>v)
+  const obj = text.reduce((a,b)=>(a[b]=a[b]?a[b]+1:1,a),{})
+  for (let i in obj){
+    arr.push([i,obj[i]])
+  }
+  return arr.sort((a,b)=>b[1]-a[1]).slice(0,3).map(v=>v[0])
+}
+
+** 
+Roman Numerals Helper
+
+const RomanNumerals = {
+  toRoman: (number) => {
+    let result = "",
+      decimals = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1],
+      roman = [
+        "M",
+        "CM",
+        "D",
+        "CD",
+        "C",
+        "XC",
+        "L",
+        "XL",
+        "X",
+        "IX",
+        "V",
+        "IV",
+        "I",
+      ];
+
+    decimals.map(function (value, index) {
+      while (number >= value) {
+        result += roman[index];
+        number -= value;
+      }
+    });
+
+    return result;
+  },
+  fromRoman: (roman) => {
+    const conversion = {
+      M: 1000,
+      CM: 900,
+      D: 500,
+      CD: 400,
+      C: 100,
+      XC: 90,
+      L: 50,
+      XL: 40,
+      X: 10,
+      IX: 9,
+      V: 5,
+      IV: 4,
+      I: 1,
+    };
+    return roman
+      .match(/CM|CD|XC|XL|IX|IV|\w/g)
+      .reduce((accum, roman) => accum + conversion[roman], 0);
+  },
+};
+
+
+***Simple Pig Latin
+
+function pigIt(str){
+  let strArr = str.split(' ');
+  let pigLatin = [];
+
+  for(let word of strArr){
+    if((/([a-zA-Z])/).test(word)){
+      pigLatin.push(word.substring(1) + word[0] + "ay");
+    }else{
+      pigLatin.push(word);
+    }
+  }
+  return pigLatin.join(" ");
+}
+
+**A Chain adding function
+
+
+
